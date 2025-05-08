@@ -1,0 +1,18 @@
+h1 {
+  color: black;
+  font-size: 50px;
+  text-align: center;
+  background-color: #e0e0e0;
+}
+
+p {
+  font-size: 16px;
+  text-align: center;
+}
+
+a {
+  color: green;
+  font-size: 16px;
+  text-align: center;
+}
+
