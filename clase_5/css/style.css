@@ -33,3 +33,21 @@ button {
 #sessionStorageBtn:hover {
     background-color: #1976D2;
 }
+
+#clearLocalStorageBtn {
+    background-color: #ff9800;
+    color: white;
+}
+
+#clearLocalStorageBtn:hover {
+    background-color: #e68900;
+}
+
+#clearSessionStorageBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+#clearSessionStorageBtn:hover {
+    background-color: #d32f2f;
+}
