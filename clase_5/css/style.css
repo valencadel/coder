@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#localStorageBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#localStorageBtn:hover {
+    background-color: #45a049;
+}
+
+#sessionStorageBtn {
+    background-color: #2196F3;
+    color: white;
+}
+
+#sessionStorageBtn:hover {
+    background-color: #1976D2;
+}
