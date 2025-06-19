@@ -198,11 +198,12 @@ function updateCartUI() {
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
             <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='🌸';">
+                <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="fallback-emoji" style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 2rem; color: #999;">🌸</div>
             </div>
             <div class="cart-item-details">
                 <div class="cart-item-info">
-                    <h4>${item.brand} ${item.name}</h4>
+                    <h4>${item.brand} - ${item.name}</h4>
                     <p>Cantidad: ${item.quantity}</p>
                 </div>
                 <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
@@ -310,7 +311,7 @@ function setupEventListeners() {
         }
     });
     
-    // Navigation smooth scrolling
+    // Hacer que el scroll sea suave
     document.querySelectorAll('a[href^="#"]:not(#cart-link)').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -325,23 +326,23 @@ function setupEventListeners() {
     });
 }
 
-// Scroll to products section
+// Scroll a los productos
 function scrollToProducts() {
     document.getElementById('products').scrollIntoView({
         behavior: 'smooth'
     });
 }
 
-// Show added to cart notification
+// Mostrar notificacion de producto agregado al carrito
 function showAddedToCartNotification() {
-    // Create temporary notification
+    // Crear notificacion temporal
     const notification = document.createElement('div');
     notification.innerHTML = '✅ Producto agregado al carrito';
     notification.style.cssText = `
         position: fixed;
         top: 100px;
         right: 20px;
-        background: #28a745;
+        background: grey;
         color: white;
         padding: 0.75rem 1.5rem;
         border-radius: 4px;
@@ -355,13 +356,13 @@ function showAddedToCartNotification() {
     
     document.body.appendChild(notification);
     
-    // Show notification
+    // Mostrar la notificaion al agregar algo al carrito
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Remove notification after 3 seconds
+    // Eliminar notificacion despues de un segundo y medio
     setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateX(100%)';
@@ -370,5 +371,5 @@ function showAddedToCartNotification() {
                 notification.parentNode.removeChild(notification);
             }
         }, 300);
-    }, 3000);
+    }, 1500);
 }
