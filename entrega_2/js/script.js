@@ -126,7 +126,7 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 // Inicializacion de la app
 document.addEventListener('DOMContentLoaded', function() {
     displayProducts(perfumes);
-    updateCartUI();
+    updateCart();
     setupEventListeners();
 });
 
@@ -172,13 +172,13 @@ function addToCart(productId) {
         });
     }
     
-    updateCartUI();
+    updateCart();
     saveCartToStorage();
     showAddedToCartNotification();
 }
 
 // Funcion para actualizar el carrito
-function updateCartUI() {
+function updateCart() {
     // Update cart count
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItems;
@@ -220,7 +220,7 @@ function updateCartUI() {
 // Funcion para eliminar del carrito
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
-    updateCartUI();
+    updateCart();
     saveCartToStorage();
 }
 
@@ -233,7 +233,7 @@ function clearCart() {
     
     if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
         cart = [];
-        updateCartUI();
+        updateCart();
         saveCartToStorage();
         alert('Carrito vaciado correctamente');
     }
@@ -252,7 +252,7 @@ function checkout() {
     alert(`¡Gracias por tu compra!\n\nResumen:\n${itemsCount} productos\nTotal: $${total.toFixed(2)}\n\nTu pedido será procesado en breve.`);
     
     cart = [];
-    updateCartUI();
+    updateCart();
     saveCartToStorage();
     closeCart();
 }
