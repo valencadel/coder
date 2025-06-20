@@ -76,7 +76,7 @@ const perfumes = [
         id: 9,
         brand: "Chanel",
         name: "Bleu de Chanel",
-        description: "Fragancia masculina fresca y especiada.",
+        description: "Una fragancia elegante, amaderada y aromática con notas de incienso, cítricos y sándalo",
         price: 135,
         category: "hombre",
         image: "images/bleu_chanel.webp"
@@ -85,7 +85,7 @@ const perfumes = [
       id: 10,
       brand: "Versace",
       name: "Eros Flame",
-      description: "Fragancia masculina fresca y especiada.",
+      description: "Un perfume intenso y apasionado, con notas especiadas y amaderadas mezcladas con cítricos.",
       price: 75,
       category: "hombre",
       image: "images/versace_eros.webp"
@@ -94,7 +94,7 @@ const perfumes = [
       id: 11,
       brand: "Lancôme",
       name: "La Vie Est Belle",
-      description: "Fragancia femenina fresca y especiada.",
+      description: "Una fragancia femenina, dulce y luminosa, con notas de vainilla, praliné y flor de iris.",
       price: 115,
       category: "mujer",
       image: "images/lancome_la_vie.jpg"
@@ -103,7 +103,7 @@ const perfumes = [
       id: 12,
       brand: "Tom Ford",
       name: "Soleil Blanc",
-      description: "Fragancia masculina fresca y especiada.",
+      description: "Un perfume solar, cálido y exótico, con notas de coco, ylang-ylang y ámbar.",
       price: 135,
       category: "unisex",
       image: "images/tom_ford_soleil.webp"
