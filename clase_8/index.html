@@ -3,59 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Error Handling & Async Practice</title>
+    <title>Pokemon API Practice</title>
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>JavaScript Error Handling & Async Functions Practice</h1>
+        <h1>Pokemon API Practice</h1>
         
-        <!-- Exercise 1: Basic Error Handling -->
-        <section class="exercise">
-            <h2>Exercise 1: Basic Error Handling</h2>
-            <button id="divideBtn">Divide Numbers</button>
-            <button id="parseBtn">Parse JSON</button>
-            <button id="arrayBtn">Access Array</button>
-            <div id="result1" class="result"></div>
+        <!-- Search Section -->
+        <section class="search-section">
+            <h2>Search Pokemon</h2>
+            <div class="search-controls">
+                <input type="text" id="pokemonSearch" placeholder="Enter Pokemon name or ID (1-151)">
+                <button id="searchBtn">Search</button>
+                <button id="randomBtn">Random Pokemon</button>
+            </div>
+            <div id="searchResult" class="result"></div>
         </section>
 
-        <!-- Exercise 2: Try-Catch with Async -->
-        <section class="exercise">
-            <h2>Exercise 2: Async Error Handling</h2>
-            <button id="fetchBtn">Fetch User Data</button>
-            <button id="timeoutBtn">Timeout Promise</button>
-            <button id="randomBtn">Random Success/Failure</button>
-            <div id="result2" class="result"></div>
+        <!-- Pokemon List Section -->
+        <section class="pokemon-list-section">
+            <h2>Pokemon List</h2>
+            <div class="list-controls">
+                <button id="loadAllBtn">Load All Pokemon (151)</button>
+                <button id="load20Btn">Load First 20</button>
+                <button id="clearListBtn">Clear List</button>
+            </div>
+            <div id="pokemonList" class="pokemon-grid"></div>
         </section>
 
-        <!-- Exercise 3: Promise Handling -->
-        <section class="exercise">
-            <h2>Exercise 3: Promise Error Handling</h2>
-            <button id="promiseBtn">Handle Promise</button>
-            <button id="allBtn">Promise.all</button>
-            <button id="raceBtn">Promise.race</button>
-            <div id="result3" class="result"></div>
+        <!-- Pokemon Details Section -->
+        <section class="pokemon-details-section">
+            <h2>Pokemon Details</h2>
+            <div id="pokemonDetails" class="pokemon-details"></div>
         </section>
 
-        <!-- Exercise 4: Custom Error Classes -->
-        <section class="exercise">
-            <h2>Exercise 4: Custom Errors</h2>
-            <button id="validationBtn">Validate Input</button>
-            <button id="networkBtn">Network Error</button>
-            <button id="customBtn">Custom Error</button>
-            <div id="result4" class="result"></div>
+        <!-- Error Handling Section -->
+        <section class="error-section">
+            <h2>Error Handling Practice</h2>
+            <div class="error-controls">
+                <button id="test404Btn">Test 404 Error</button>
+                <button id="testNetworkBtn">Test Network Error</button>
+                <button id="testTimeoutBtn">Test Timeout</button>
+                <button id="testInvalidBtn">Test Invalid Data</button>
+            </div>
+            <div id="errorResult" class="result"></div>
         </section>
 
-        <!-- Exercise 5: Async/Await Practice -->
-        <section class="exercise">
-            <h2>Exercise 5: Async/Await</h2>
-            <button id="asyncBtn">Async Function</button>
-            <button id="parallelBtn">Parallel Execution</button>
-            <button id="sequentialBtn">Sequential Execution</button>
-            <div id="result5" class="result"></div>
+        <!-- Loading States Section -->
+        <section class="loading-section">
+            <h2>Loading States</h2>
+            <div class="loading-controls">
+                <button id="showLoadingBtn">Show Loading</button>
+                <button id="hideLoadingBtn">Hide Loading</button>
+            </div>
+            <div id="loadingDisplay" class="loading-display"></div>
         </section>
     </div>
-
-    <script src="js/script.js"></script>
 </body>
 </html>
