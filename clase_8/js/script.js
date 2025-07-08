@@ -47,6 +47,17 @@ randomBtn.addEventListener('click', () => {
     fetchARandomPokemon();
 });
 
+// evento cargar 151
+loadAllBtn.addEventListener('click', () => {
+    fetchPokemonList();
+    displayPokemonList(data.results);
+});
+
+// evento cargar 20
+load20Btn.addEventListener('click', () => {
+    fetchPokemonList();
+});
+
 
 async function fetchPokemonList() {
     try {
@@ -63,6 +74,13 @@ async function fetchPokemonList() {
 async function fetchOnePokemon(id) {
     if (!id) {
         handlePokemonError(new Error('No Pokemon ID provided'), searchResult);
+        return;
+    }
+
+    // Validate numeric ID range (1-151)
+    const numericId = parseInt(id);
+    if (!isNaN(numericId) && (numericId < 1 || numericId > 151)) {
+        handlePokemonError(new Error('Pokemon ID out of range'), searchResult);
         return;
     }
 
@@ -96,6 +114,8 @@ function handlePokemonError(error, targetElement, customMessage = null) {
             errorMessage = 'Por favor ingrese un nombre o ID de Pokémon.';
         } else if (error.message === 'Pokemon not found') {
             errorMessage = 'No se encontró ningún Pokémon con ese nombre.';
+        } else if (error.message === 'Pokemon ID out of range') {
+            errorMessage = 'El ID del Pokémon debe estar entre 1 y 151.';
         } else if (error.message.includes('fetch')) {
             errorMessage = 'Error de conexión. Verifique su conexión a internet.';
         }
@@ -122,6 +142,47 @@ function displayPokemonInSearch(pokemon) {
     `;
     searchResult.appendChild(pokemonCard);
 }
+
+async function fetchPokemonList(pokemonList) {
+  try {
+    const response = await fetch(POKEMON_LIST_ENDPOINT);
+    const data = await response.json();
+    console.log(data);
+    displayPokemonList(data.results);
+  } catch (error) {
+    console.error('Error fetching Pokemon list:', error);
+    handlePokemonError(error, pokemonList, 'Error al cargar la lista de Pokémon');
+  }
+}
+
+
+async function displayPokemonList(pokemonList) {
+  console.log(pokemonList);
+  const pokemonListElement = document.getElementById('pokemonList');
+  
+  for (const pokemon of pokemonList) {
+    try {
+      const response = await fetch(pokemon.url);
+      const data = await response.json();
+      console.log(data);
+      
+      const pokemonCard = document.createElement('div');
+      pokemonCard.className = 'pokemon-card';
+      pokemonCard.innerHTML = `
+        <img class="pokemon-image" style="display: block; margin: 0 auto;" src="${data.sprites.front_default}" alt="${data.name}">
+        <h3>${data.name}</h3>
+        <p>Tipo: ${data.types[0].type.name[0].toUpperCase() + data.types[0].type.name.slice(1)} ${
+          data.types[1]?.type.name ? ' / ' + data.types[1].type.name[0].toUpperCase() + data.types[1].type.name.slice(1) : ''
+        }</p>
+      `;
+      pokemonListElement.appendChild(pokemonCard);
+    } catch (error) {
+      console.error('Error fetching Pokemon details:', error);
+      handlePokemonError(error, pokemonListElement);
+    }
+  }
+}
+
 
 // fetchPokemonList();
 
