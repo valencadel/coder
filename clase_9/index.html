@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon API Practice</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Pokemon API Practice</h1>
+        
+        <!-- Search Section -->
+        <section class="search-section">
+            <h2>Search Pokemon</h2>
+            <div class="search-controls">
+                <input type="text" id="pokemonSearch" placeholder="Enter Pokemon name or ID (1-151)">
+                <button id="searchBtn">Search</button>
+                <button id="randomBtn">Random Pokemon</button>
+            </div>
+            <div id="searchResult" class="result"></div>
+        </section>
+
+        <!-- Pokemon List Section -->
+        <section class="pokemon-list-section">
+            <h2>Pokemon List</h2>
+            <div class="list-controls">
+                <button id="loadAllBtn">Load All Pokemon (151)</button>
+                <button id="load20Btn">Load First 20</button>
+                <button id="clearListBtn">Clear List</button>
+            </div>
+            <div id="pokemonList" class="pokemon-grid"></div>
+        </section>
+
+        <!-- Pokemon Details Section -->
+        <section class="pokemon-details-section">
+            <h2>Pokemon Details</h2>
+            <div id="pokemonDetails" class="pokemon-details"></div>
+        </section>
+
+        <!-- Error Handling Section -->
+        <section class="error-section">
+            <h2>Error Handling Practice</h2>
+            <div class="error-controls">
+                <button id="test404Btn">Test 404 Error</button>
+                <button id="testNetworkBtn">Test Network Error</button>
+                <button id="testTimeoutBtn">Test Timeout</button>
+                <button id="testInvalidBtn">Test Invalid Data</button>
+            </div>
+            <div id="errorResult" class="result"></div>
+        </section>
+
+        <!-- Loading States Section -->
+        <section  class="loading-section">
+            <h2>Loading States</h2>
+            <div class="loading-controls">
+                <button id="showLoadingBtn">Show Loading</button>
+                <button id="hideLoadingBtn">Hide Loading</button>
+            </div>
+            <div id="loadingDisplay" class="loading-display"></div>
+        </section>
+    </div>
+</body>
+</html>
