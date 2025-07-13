@@ -58,11 +58,6 @@ load20Btn.addEventListener('click', () => {
     fetchPokemonList();
 });
 
-// evento clear
-clearListBtn.addEventListener('click', () => {
-    clearPokemonList();
-});
-
 
 async function fetchPokemonList() {
     try {
@@ -186,11 +181,6 @@ async function displayPokemonList(pokemonList) {
       handlePokemonError(error, pokemonListElement);
     }
   }
-}
-
-function clearPokemonList() {
-  const pokemonListElement = document.getElementById('pokemonList');
-  pokemonListElement.innerHTML = '';
 }
 
 
