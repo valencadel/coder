@@ -8,24 +8,52 @@
     <script defer src="js/script.js"></script>
 </head>
 <body>
+    <!-- Top Banner -->
+    <header class="top-banner">
+        <div class="banner-container">
+            <h1 class="page-title">Pokemon API Practice</h1>
+            <nav class="section-nav">
+                <a href="#search" class="nav-link">Search Pokemon</a>
+                <a href="#pokemon-list" class="nav-link">Pokemon List</a>
+                <a href="#pokemon-details" class="nav-link">Pokemon Details</a>
+                <div class="cart-item" id="cart-item">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-text">Cart</span>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Container -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-container" class="cart-container">
+        <button class="cart-close-btn" id="cart-close-btn">×</button>
+        <h2>Cart</h2>
+        <div id="cart-items">
+            <div class="cart-empty">Your cart is empty. Add some Pokemon!</div>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Pokemon API Practice</h1>
-        
         <!-- Search Section -->
-        <section class="search-section">
-            <h2>Search Pokemon</h2>
-            <div class="search-controls">
+        <section id="search" class="search-section">
+            <h2 style="text-align: center;">Search Pokemon</h2>
+            <div class="search-controls" style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
                 <input type="text" id="pokemonSearch" placeholder="Enter Pokemon name or ID (1-151)">
-                <button id="searchBtn">Search</button>
-                <button id="randomBtn">Random Pokemon</button>
+                  <div style="display: flex; justify-content: center; gap: 10px;">
+                       <button id="searchBtn">Search</button>
+                       <button id="randomBtn">Random Pokemon</button>
+                       <button id="clearSearchBtn">Clear Search</button>
+                  </div>
             </div>
             <div id="searchResult" class="result"></div>
         </section>
 
         <!-- Pokemon List Section -->
-        <section class="pokemon-list-section">
-            <h2>Pokemon List</h2>
-            <div class="list-controls">
+        <section id="pokemon-list" class="pokemon-list-section">
+            <h2 style="text-align: center;">Pokemon List</h2>
+            <div class="list-controls" style="display: flex; justify-content: center;">
                 <button id="loadAllBtn">Load All Pokemon (151)</button>
                 <button id="load20Btn">Load First 20</button>
                 <button id="clearListBtn">Clear List</button>
@@ -34,31 +62,9 @@
         </section>
 
         <!-- Pokemon Details Section -->
-        <section class="pokemon-details-section">
-            <h2>Pokemon Details</h2>
+        <section id="pokemon-details" class="pokemon-details-section">
+            <h2 style="text-align: center;">Pokemon Cart Details</h2>
             <div id="pokemonDetails" class="pokemon-details"></div>
-        </section>
-
-        <!-- Error Handling Section -->
-        <section class="error-section">
-            <h2>Error Handling Practice</h2>
-            <div class="error-controls">
-                <button id="test404Btn">Test 404 Error</button>
-                <button id="testNetworkBtn">Test Network Error</button>
-                <button id="testTimeoutBtn">Test Timeout</button>
-                <button id="testInvalidBtn">Test Invalid Data</button>
-            </div>
-            <div id="errorResult" class="result"></div>
-        </section>
-
-        <!-- Loading States Section -->
-        <section  class="loading-section">
-            <h2>Loading States</h2>
-            <div class="loading-controls">
-                <button id="showLoadingBtn">Show Loading</button>
-                <button id="hideLoadingBtn">Hide Loading</button>
-            </div>
-            <div id="loadingDisplay" class="loading-display"></div>
         </section>
     </div>
 </body>

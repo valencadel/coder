@@ -24,6 +24,7 @@ const API_BASE = 'https://pokeapi.co/api/v2/';
 // Endpoints
 const POKEMON_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/';
 const POKEMON_LIST_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0';
+const POKEMON_FIRST_20_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
 
 // Botones search
 const searchBtn = document.getElementById('searchBtn');
@@ -35,6 +36,25 @@ const loadAllBtn = document.getElementById('loadAllBtn');
 const load20Btn = document.getElementById('load20Btn');
 const clearListBtn = document.getElementById('clearListBtn');
 const pokemonList = document.getElementById('pokemonList');
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+const cartContainer = document.getElementById('cart-container');
+const cartOverlay = document.getElementById('cart-overlay');
+
+// cart
+const cart = [];
+
+// boton cart
+const cartBtn = document.getElementById('cart-item');
+
+// boton add to cart
+const addToCartBtn = document.getElementById('add-to-cart-btn');
+
+
+// evento cart
+cartBtn.addEventListener('click', () => {
+    console.log('cart');
+    ShowCart()
+});
 
 // evento search
 searchBtn.addEventListener('click', () => {
@@ -55,8 +75,62 @@ loadAllBtn.addEventListener('click', () => {
 
 // evento cargar 20
 load20Btn.addEventListener('click', () => {
-    fetchPokemonList();
+    displayFirst20Pokemon();
 });
+
+// evento clear
+clearListBtn.addEventListener('click', () => {
+    clearList();
+});
+
+// evento clear search
+clearSearchBtn.addEventListener('click', () => {
+    clearSearch();
+});
+
+function ShowCart() {
+  // Show the cart sidebar
+  cartContainer.classList.add('show');
+  cartOverlay.classList.add('show');
+  
+  // Add event listener to close cart when clicking overlay
+  cartOverlay.addEventListener('click', closeCart);
+  
+  // Add event listener to close button
+  const closeBtn = document.getElementById('cart-close-btn');
+  closeBtn.addEventListener('click', closeCart);
+  
+  // Update cart items display
+  const cartItems = document.getElementById('cart-items');
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<div class="cart-empty">Your cart is empty. Add some Pokemon!</div>';
+  } else {
+    cartItems.innerHTML = '';
+    cart.forEach(pokemon => {
+      const cartItemCard = document.createElement('div');
+      cartItemCard.className = 'cart-item-card';
+      cartItemCard.innerHTML = `
+        <img src="${pokemon.image}" alt="${pokemon.name}">
+        <div class="cart-item-info">
+          <h4>${pokemon.name}</h4>
+          <p>Types: ${pokemon.types.join(', ')}</p>
+        </div>
+      `;
+      cartItems.appendChild(cartItemCard);
+    });
+  }
+}
+
+function closeCart() {
+  const cartContainer = document.getElementById('cart-container');
+  const cartOverlay = document.getElementById('cart-overlay');
+  
+  cartContainer.classList.remove('show');
+  cartOverlay.classList.remove('show');
+  
+  // Remove event listeners
+  cartOverlay.removeEventListener('click', closeCart);
+}
 
 
 async function fetchPokemonList() {
@@ -135,12 +209,19 @@ function displayPokemonInSearch(pokemon) {
     pokemonCard.innerHTML = `
         <img class="pokemon-image" style="display: block; margin: 0 auto;" src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
         <h3>${pokemon.name}</h3>
-        <p>Tipo: ${pokemon.types[0].type.name[0].toUpperCase() + pokemon.types[0].type.name.slice(1)} ${
+        <p>Type: ${pokemon.types[0].type.name[0].toUpperCase() + pokemon.types[0].type.name.slice(1)} ${
           pokemon.types[1]?.type.name ? ' / ' + pokemon.types[1].type.name[0].toUpperCase() + pokemon.types[1].type.name.slice(1) : ''
         }</p>
-        <p>Habilidades: ${pokemon.abilities.map(ability => ability.ability.name[0].toUpperCase() + ability.ability.name.slice(1)).join(', ')}</p>
+        <p>Abilities: ${pokemon.abilities.map(ability => ability.ability.name[0].toUpperCase() + ability.ability.name.slice(1)).join(', ')}</p>
+        <button class="add-to-cart-btn">
+            Add to Cart
+        </button>
     `;
     searchResult.appendChild(pokemonCard);
+}
+
+function clearSearch() {
+    searchResult.innerHTML = '';
 }
 
 async function fetchPokemonList(pokemonList) {
@@ -171,9 +252,12 @@ async function displayPokemonList(pokemonList) {
       pokemonCard.innerHTML = `
         <img class="pokemon-image" style="display: block; margin: 0 auto;" src="${data.sprites.front_default}" alt="${data.name}">
         <h3>${data.name}</h3>
-        <p>Tipo: ${data.types[0].type.name[0].toUpperCase() + data.types[0].type.name.slice(1)} ${
+        <p>Type: ${data.types[0].type.name[0].toUpperCase() + data.types[0].type.name.slice(1)} ${
           data.types[1]?.type.name ? ' / ' + data.types[1].type.name[0].toUpperCase() + data.types[1].type.name.slice(1) : ''
         }</p>
+        <button class="add-to-cart-btn">
+            Add to Cart
+        </button>
       `;
       pokemonListElement.appendChild(pokemonCard);
     } catch (error) {
@@ -184,41 +268,16 @@ async function displayPokemonList(pokemonList) {
 }
 
 
-// fetchPokemonList();
-
-// async function first() {
-//   console.log("Primera función");
-//   second();
-//   console.log("Primera función - Parte 2");
-// }
-
-// function second() {
-//   console.log("Segunda función");
-// }
-
-// first();
-
-// Ejemplo de setTimeout
-// console.log("Inicio");
-
-// setTimeout(() => {
-//     console.log("Esto es asincrónico");
-// }, 2000);
-
-// console.log("Fin");
-
-try {
-  let resultado = dividir(10, 0);
-  console.log("Resultado:", resultado);
-} catch (error) {
-  console.error("Se produjo un error:", error.message);
-} finally {
-  console.log("Operación completada.");
+async function displayFirst20Pokemon() {
+  const response = await fetch(POKEMON_FIRST_20_ENDPOINT);
+  const data = await response.json();
+  console.log(data.results);
+  displayPokemonList(data.results);
 }
 
-function dividir(a, b) {
-  if (b === 0) {
-      throw new Error("No se puede dividir por cero.");
-  }
-  return a / b;
+
+function clearList() {
+  const pokemonListElement = document.getElementById('pokemonList');
+  pokemonListElement.innerHTML = '';
 }
+
