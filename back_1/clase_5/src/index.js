@@ -8,12 +8,17 @@ const app = express();
 const PORT = 8080;
 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/views'))
+
+app.get('/saludo/:nombre', (req, res) => {
+  const nombre = req.params.nombre;
+  res.render('layouts/saludo', { nombre, layout:false })
+})
 
 app.get('/', (req, res) => {
   let user = {
