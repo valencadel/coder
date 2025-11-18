@@ -1,0 +1,21 @@
+<main>
+  <h1>
+      Este es el perfil de un administrador
+  </h1>
+    {{#if isAdmin}}
+      <span>Hola {{ name }}</span>
+      <span>Tu rol es {{ rol }}</span>
+      <span>Tus notas son:</span>
+        {{#each notas}}
+          <div>
+            <p>Curso: {{curso}}</p>
+            <p>Nota: {{nota}}</p>
+          </div>
+          <hr>
+        {{/each}}
+    {{else}}
+      <span>no tenes permisos de administrador</span>
+    {{/if}}
+</main>
+
+<script src="js/perfil.js"></script>
