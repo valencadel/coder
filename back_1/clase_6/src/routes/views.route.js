@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router();
 
 
-router.get('/',(req, res) => {
+router.get('/perfil',(req, res) => {
     res.render('perfil', {
       name: 'Valentin',
       rol: 'admin',
@@ -12,6 +12,10 @@ router.get('/',(req, res) => {
     })
     // primer parametro -> nombre de la vista. define la vista index.handlebars
     // segundo parametro -> data que va a recibir la vista
+});
+
+router.get('/socket',(req, res) => {
+    res.render('chat', {})
 });
 
 export default router;
